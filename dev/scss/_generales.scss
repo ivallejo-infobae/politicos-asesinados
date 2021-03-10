@@ -1,0 +1,329 @@
+// ===== ///// FONTS ///// ===== //
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+// ===== ///// VARIABLES ///// ===== //
+$orange-infobae: #f68e01;
+$gray-component: #575757;
+
+// ===== ///// FUNCTIONS ///// ===== //
+
+@function em($number, $parent:16px) {
+  @return ($number / $parent) * 1em;
+}
+
+@function rem($number, $parent:16px) {
+  @return ($number / $parent) * 1rem;
+}
+
+// ===== ///// MIXINS ///// ===== //
+
+$breakpoints: (
+  sm: rem(560px),
+  md: rem(768px),
+  lg: rem(992px),
+  xl: rem(1200px),
+  xxl: rem(1600px)
+);
+
+@mixin media-query($breakpoint) {
+  @if map-has-key($breakpoints,$breakpoint) {
+    @media screen and (min-width: map-get($breakpoints,$breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  }
+};
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  // font-size: 62.5%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f0f0;
+}
+
+// ===== ***** COUNTER COMPONENT ***** ===== //
+
+.wrap-component {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 10px;
+  @include media-query(md) {
+  }
+}
+
+.counter {
+  background-color: $gray-component;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: inset 0px 5px 1px #575757,
+  inset 0px 12px 1px #a5a5a5,
+  0 20px 1px #111111;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #000;
+    // margin-bottom: 50px;
+    position: relative;
+    z-index: 10;
+  }
+  &__title-wrap {
+    width: 100%;
+    margin-top: 20px;
+  }
+  &__title {
+    color: white;
+    text-transform: uppercase;
+    margin: 0;
+    &--up {
+      font-size: rem(45px);
+      text-align: center;
+      font-weight: 300;
+      letter-spacing: .1em;
+    }
+    &--down {
+      font-size: rem(35px);
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: .13em;
+    }
+  }
+  &__content {
+    max-height: 800px;
+    overflow-y: auto;
+    box-shadow: inset 0 25px 20px -30px rgba(0,0,0,0.4);
+  }
+  @include media-query(md) {
+    border-radius: 50px;
+    &__title-wrap {
+      width: 50%;
+      margin-top: 0;
+    }
+    &__title {
+      padding-left: 20px;
+      text-align: left;
+      &--up {
+        font-size: rem(55px);
+      }
+      &--down {
+        font-size: rem(43px);
+      }
+    }
+  }
+  @include media-query(lg) {
+    &__title {
+      &--up {
+        font-size: rem(65px);
+      }
+      &--down {
+        font-size: rem(50px);
+      }
+    }
+  }
+}
+
+.clock {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  &__box {
+    width: calc((100% - 30px) / 3);
+    position: relative;
+  }
+  &__number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    font-size: rem(90px);
+    font-weight: 700;
+    text-align: center;
+    color: $orange-infobae;
+    mix-blend-mode: color-dodge;
+  }
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  @include media-query(md) {
+    width: 50%;
+    &__number {
+      font-size: rem(110px);
+    }
+  }
+  @include media-query(lg) {
+    &__number {
+      font-size: rem(120px);
+    }
+  }
+}
+
+// ===== ***** POLITICIANS COMPONENT ***** ===== //
+
+.politicians {
+  &__item {
+    // display: flex;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    padding: 30px 0;
+    border-bottom: 2px solid #000;
+    @at-root &:last-child {
+      border-bottom: none;
+    }
+  }
+  &__info {
+    // width: 28%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    overflow-x: hidden;
+    .text-info {
+      display: none;
+      width: 100%;
+      color: white;
+      text-align: center;
+      padding: 5px 0;
+      letter-spacing: .1em;
+      line-height: 135%;
+      position: relative;
+      span {
+        color: $orange-infobae;
+        display: block;
+      }
+    } 
+  }
+  &__photo-wrap {
+    // width: 40%;
+    position: relative;
+    box-shadow: -20px 0 30px -38px black, 20px 0 30px -38px black;
+    cursor: pointer;
+    @at-root &:hover .photo-hover {
+      // display: block;
+      opacity: 1;
+    }
+  }
+  &__photo {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    &--hover {
+      display: none;
+    }
+  }
+  &__name {
+    text-align: center;
+    color: $orange-infobae;
+    letter-spacing: .1em;
+    margin: 0;
+    font-weight: 400;
+  }
+  &__map-wrap {
+    // width: 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+  }
+  &__map {
+    display: none;
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+    // margin: 0 auto;
+    position: relative;
+  }
+  @include media-query(lg) {
+    &__info {
+      .text-info {
+        display: block;
+        text-align: right;
+        left: 100%;
+        opacity: 0;
+      }
+    }
+    &__photo {
+      &--hover {
+        display: block;
+        position: absolute;
+        left: 0; right: 0; top: 0;
+        transition: .3s all ease-in-out;
+        opacity: 0;
+      }
+    }
+    &__map-wrap {
+      justify-content: flex-start;
+    }
+    &__map {
+      display: block;
+      right: 100%;
+      opacity: 0;
+    }
+  }
+}
+
+.politician {
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  grid-template-rows: auto;
+  grid-row-gap: 15px;
+  &__item {
+    @at-root &:nth-child(1) {
+      grid-column: span 12;
+      // grid-row-start: 4;
+      // grid-row-end: 7;
+    }
+    @at-root &:nth-child(2) {
+      grid-column: span 12;
+      grid-row-start: 1;
+      grid-row-end: 4;
+    }
+    @at-root &:nth-child(3) {
+      grid-column: span 12;
+      // grid-row-start: 8;
+      // grid-row-end: 11;
+    }
+  }
+  @include media-query(lg) {
+    grid-row-gap: 0;
+    column-gap: 20px;
+    &__item {
+      @at-root &:nth-child(1) {
+        grid-column: span 4;
+        // grid-row-start: 4;
+        // grid-row-end: 7;
+      }
+      @at-root &:nth-child(2) {
+        grid-column: span 4;
+        grid-row-start: inherit;
+        grid-row-end: inherit;
+      }
+      @at-root &:nth-child(3) {
+        grid-column: span 4;
+        // grid-row-start: 8;
+        // grid-row-end: 11;
+      }
+    }
+  }
+}
+
