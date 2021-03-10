@@ -1,0 +1,1 @@
+{"version":3,"sources":["_generales.scss"],"names":[],"mappings":"AAIA,KACE,sBAHiB,CAIjB,wCAAyC","file":"styles.min.css","sourcesContent":["$color-blue: steelblue;\n$color-red: red;\n$color-green: green;\n\nbody {\n  background-color: $color-green;\n  font-family: Arial, Helvetica, sans-serif;\n}"]}
