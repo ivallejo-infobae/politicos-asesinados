@@ -1,6 +1,6 @@
 let btnPhoto = $(".politicians__photo-wrap");
 
-if($(window).width() < 1024){
+if($(window).width() < 750){
   btnPhoto.on('click', function(){
     let t = $(this);
     let text = t.parent().find(".text-info");

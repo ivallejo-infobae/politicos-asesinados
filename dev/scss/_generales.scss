@@ -19,7 +19,7 @@ $gray-component: #575757;
 
 $breakpoints: (
   sm: rem(560px),
-  md: rem(768px),
+  md: rem(750px),
   lg: rem(992px),
   xl: rem(1200px),
   xxl: rem(1600px)
@@ -56,11 +56,9 @@ body {
 
 .wrap-component {
   width: 100%;
-  max-width: 960px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 50px 10px;
-  @include media-query(md) {
-  }
 }
 
 .counter {
@@ -218,6 +216,10 @@ body {
     position: relative;
     box-shadow: -20px 0 30px -38px black, 20px 0 30px -38px black;
     cursor: pointer;
+    outline: none !important;
+    &:active {
+      background-color: transparent !important;
+    }
     @at-root &:hover .photo-hover {
       // display: block;
       opacity: 1;
@@ -256,7 +258,7 @@ body {
     // margin: 0 auto;
     position: relative;
   }
-  @include media-query(lg) {
+  @include media-query(md) {
     &__info {
       .text-info {
         display: block;
@@ -307,7 +309,7 @@ body {
       // grid-row-end: 11;
     }
   }
-  @include media-query(lg) {
+  @include media-query(md) {
     grid-row-gap: 0;
     column-gap: 20px;
     &__item {
