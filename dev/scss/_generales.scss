@@ -56,7 +56,7 @@ body {
 
 .wrap-component {
   width: 100%;
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 50px 10px;
   @include media-query(md) {
@@ -103,7 +103,7 @@ body {
     }
   }
   &__content {
-    max-height: 800px;
+    height: 400px;
     overflow-y: auto;
     box-shadow: inset 0 25px 20px -30px rgba(0,0,0,0.4);
   }
@@ -122,6 +122,9 @@ body {
       &--down {
         font-size: rem(43px);
       }
+    }
+    &__content {
+      height: 800px;
     }
   }
   @include media-query(lg) {
