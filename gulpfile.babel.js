@@ -21,7 +21,11 @@ import yargs from 'yargs'
 // BROWSERSYNC
 import {init as server, stream, reload} from 'browser-sync';
 
-const PRODUCTION = yargs.argv.prod;
+// const PRODUCTION = yargs.argv.prod;
+
+task('clean', () => del(['docs/**']))
+
+task('clean-images', () => del(['app/img/**']))
 
 const paths = {
   html: {
@@ -114,8 +118,6 @@ task('docs', () => {
   .pipe(dest(paths.docs.dest))
 })
 
-task('clean', () => del(['docs/**']))
-
 task('startServer', (done) => {
   server({
     server: 'app/',
@@ -135,6 +137,6 @@ task('watch', () => {
   watch(paths.images.files, series('compileImages'))
 });
 
-task('default', series('startServer', parallel('html', 'styles', 'mainJs', 'compileCss', 'compileJs', 'compileFonts', 'compileImages'), 'watch'))
+task('default', series('startServer', parallel('html', 'styles', 'mainJs', 'compileCss', 'compileJs', 'compileFonts', 'clean-images', 'compileImages'), 'watch'))
 
 task('package', series('clean', 'docs'))
